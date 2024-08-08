@@ -39,7 +39,24 @@ export interface GenerateInvoiceFacadeInputDto {
   }[];
 }
 
+export interface GenerateInvoiceFacadeOutputDto {
+  id: string;
+  name: string;
+  document: string;
+  street: string;
+  number: string;
+  complement: string;
+  city: string;
+  state: string;
+  zipCode: string;
+  items: {
+    id: string;
+    name: string;
+    price: number;
+  }[];
+}
+
 export default interface InvoiceFacadeInterface {
-  add(input: GenerateInvoiceFacadeInputDto): Promise<void>;
+  generate(input: GenerateInvoiceFacadeInputDto): Promise<GenerateInvoiceFacadeOutputDto>;
   find(input: FindInvoiceFacadeInputDTO): Promise<FindInvoiceFacadeOutputDTO>;
 }

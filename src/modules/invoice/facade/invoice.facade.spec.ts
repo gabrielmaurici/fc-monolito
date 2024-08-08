@@ -48,9 +48,9 @@ describe("Invoice Facade test", () => {
       ]
     }
 
-    await facade.add(input)
+    const invoiceGenerate = await facade.generate(input)
 
-    const invoice = await InvoiceModel.findOne({ include: [InvoiceItemModel] })
+    const invoice = await InvoiceModel.findOne({ where: { id: invoiceGenerate.id }, include: [InvoiceItemModel] })
 
     expect(invoice).toBeDefined()
     expect(invoice.name).toEqual(input.name)
@@ -94,7 +94,7 @@ describe("Invoice Facade test", () => {
       ]
     };
 
-    await facade.add(input);
+    await facade.generate(input);
 
     const invoice = await facade.find({ id: "1" });
 
