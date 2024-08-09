@@ -4,7 +4,7 @@ import ProductRepository from '../../../modules/product-adm/repository/product.r
 
 export const productsRoute = express.Router();
 
-productsRoute.post("/products", async (req: Request, res: Response) => {
+productsRoute.post("/", async (req: Request, res: Response) => {
     try {
         const addProductUseCase = new AddProductUseCase(new ProductRepository())
         const productDto = {

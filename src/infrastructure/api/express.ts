@@ -5,13 +5,15 @@ import { productsRoute } from "./routes/products.route";
 import { invoicesRoute } from "./routes/invoice.route";
 import { Sequelize } from "sequelize-typescript";
 import OrderModel from "../../modules/checkout/repository/order.model";
-import { ProductModel as AdmProductModel} from "../../modules/product-adm/repository/product.model";
 import { ClientModel } from "../../modules/client-adm/repository/client.model";
 import TransactionModel from "../../modules/payment/repository/transaction.model"
 import ProductModel  from "../../modules/store-catalog/repository/product.model"
 import { InvoiceItemModel } from "../../modules/invoice/repository/invoice-item.model";
 import { InvoiceModel } from "../../modules/invoice/repository/invoice.model";
 import OrderItemModel from "../../modules/checkout/repository/order-item.model";
+import { Umzug } from "umzug";
+import { migrator } from "../../db/config-migrations/migrator";
+import { ProductRegistrationModel } from "../../modules/product-adm/repository/product.model";
 
 export const app: Express = express();
 app.use(express.json());
@@ -20,7 +22,8 @@ app.use("/clients", clientsRoute);
 app.use("/checkouts", checkoutsRoute);
 app.use("/invoices", invoicesRoute);
 
-export let sequelize: Sequelize;
+let sequelize: Sequelize;
+let migration: Umzug<any>;
 
 (async function setupDb() {
   sequelize = new Sequelize({
@@ -28,9 +31,12 @@ export let sequelize: Sequelize;
     storage: ":memory:",
     logging: false,
   });
+
+  migration = migrator(sequelize);
+  migration.up();
+
   sequelize.addModels([
-    OrderModel,
-    AdmProductModel,
+    ProductRegistrationModel,
     ClientModel,
     TransactionModel,
     ProductModel,
