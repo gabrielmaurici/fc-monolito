@@ -13,7 +13,7 @@ import { InvoiceModel } from "../../modules/invoice/repository/invoice.model";
 import OrderItemModel from "../../modules/checkout/repository/order-item.model";
 import { Umzug } from "umzug";
 import { migrator } from "../../db/config-migrations/migrator";
-import { ProductRegistrationModel } from "../../modules/product-adm/repository/product.model";
+import { ProductRegistrationModel } from "../../modules/product-adm/repository/product-registration.model";
 
 export const app: Express = express();
 app.use(express.json());
