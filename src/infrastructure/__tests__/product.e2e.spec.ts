@@ -10,7 +10,7 @@ describe("Product API e2e test", () => {
     let migration: Umzug<any>;
 
     beforeEach(async () => {
-        await initializeDatabase();
+        sequelize = await initializeDatabase();
     });
     afterEach(async () => {
         if (!migration || !sequelize) {
@@ -30,7 +30,6 @@ describe("Product API e2e test", () => {
         };
 
         const response = await request(app).post("/products").send(product);
-        console.log(response.status)
         expect(response.status).toBe(201);
         expect(response.body).toEqual(
         expect.objectContaining({
@@ -39,7 +38,6 @@ describe("Product API e2e test", () => {
             description: product.description,
             purchasePrice: product.purchasePrice,
             stock: product.stock,
-        })
-        );
+        }));
     });
 });

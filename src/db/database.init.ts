@@ -29,8 +29,7 @@ export async function initializeDatabase(): Promise<Sequelize> {
         OrderModel,
         OrderItemModel
     ]);
-
     await sequelize.sync();
-
+    
     return sequelize;
 }
