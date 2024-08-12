@@ -37,13 +37,11 @@ describe("Client API e2e test", () => {
         };
 
         const response = await request(app).post("/clients").send(client);
-        console.log(response.body);
         expect(response.status).toBe(201);
         expect(response.body.id).toBeDefined();
         expect(response.body.name).toEqual(client.name);
         expect(response.body.document).toEqual(client.document);
         expect(response.body.email).toEqual(client.email);
-        expect(response.body.name).toEqual(client.name);
         expect(response.body.address._street).toEqual(client.address.street);
         expect(response.body.address._number).toEqual(client.address.number);
         expect(response.body.address._complement).toEqual(client.address.complement);
