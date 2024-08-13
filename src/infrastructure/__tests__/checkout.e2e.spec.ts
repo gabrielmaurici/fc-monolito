@@ -63,7 +63,6 @@ describe("Checkoeut API e2e test", () => {
         };
         
         const response = await request(app).post("/checkout").send(checkout);
-        console.log(response.body)
         expect(response.status).toBe(201);
         expect(response.body.id).toBeDefined();
         expect(response.body.invoiceId).toBeDefined();
