@@ -42,8 +42,8 @@ describe("Invoice API e2e test", () => {
                 }
             ]
         });
-        
-        const response = await request(app).get(`/invoices/${invoiceGenerated.id}`).send();
+
+        const response = await request(app).get(`/invoice/${invoiceGenerated.id}`).send();
 
         expect(response.status).toBe(200);
         expect(response.body.id).toBeDefined();

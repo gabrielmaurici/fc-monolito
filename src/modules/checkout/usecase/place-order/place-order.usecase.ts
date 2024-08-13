@@ -113,6 +113,7 @@ export default class PlaceOrderUseCase implements UseCaseInterface {
 
   private async getProduct(productId: string): Promise<Product> {
     const product = await this._catalogFacade.find({ id: productId });
+    console.log(product)
     if (!product) {
       throw new Error("Product not found");
     }

@@ -1,5 +1,4 @@
 import express, { Request, Response } from 'express';
-import CheckoutFacadeFactory from '../../../modules/checkout/factory/checkout.facade.factory';
 import PlaceOrderUseCase from '../../../modules/checkout/usecase/place-order/place-order.usecase';
 import ClientAdmFacadeFactory from '../../../modules/client-adm/factory/client-adm.facade.factory';
 import ProductAdmFacadeFactory from '../../../modules/product-adm/factory/facade.factory';
@@ -9,7 +8,7 @@ import InvoiceFacadeFactory from '../../../modules/invoice/factory/invoice.facad
 
 export const checkoutsRoute = express.Router();
 
-checkoutsRoute.post("/checkouts", async (req: Request, res: Response) => {
+checkoutsRoute.post("/", async (req: Request, res: Response) => {
     try {
         const clientFacade = ClientAdmFacadeFactory.create();
         const productFacade = ProductAdmFacadeFactory.create();

@@ -19,8 +19,8 @@ export const app: Express = express();
 app.use(express.json());
 app.use("/products", productsRoute);
 app.use("/clients", clientsRoute);
-app.use("/checkouts", checkoutsRoute);
-app.use("/invoices", invoicesRoute);
+app.use("/checkout", checkoutsRoute);
+app.use("/invoice", invoicesRoute);
 
 let sequelize: Sequelize;
 let migration: Umzug<any>;
